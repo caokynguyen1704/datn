@@ -41,7 +41,7 @@ const int width=128;
 const int height=64;
 Adafruit_SSD1306 display(width,height,&Wire,-1);
 
-const uint16_t irPin= 12;
+const uint16_t irPin= 13;
 IRrecv irrecv(irPin);
 decode_results results;
 int currentBtn,pastBtn,currentValue,oldValue;
