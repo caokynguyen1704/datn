@@ -26,7 +26,7 @@ long interval = 0;
 String ssid="";
 String password="";
 IPAddress ipClient;
-char* ssidHost="WiFiSmartFan";
+char* ssidHost="WiFiSmartFanv1";
 char* passHost="";
 IPAddress ipHost;
 bool isConnectToHost=false;
@@ -73,12 +73,15 @@ void setup() {
     char *charJson=(char*)jsonWifi.c_str();
     ssid=readValueFromJson(charJson,"ssid");
     password=readValueFromJson(charJson,"pass");
+    Serial.println(ssid);
+    Serial.println(password);
   }
+  Serial.println(ssid);
   if (ssid!=""){
     int count=0;
     WiFi.begin(ssid,password);
     Serial.printf("Connect to %s",ssid);
-    while(WiFi.status()!=WL_CONNECTED&&count<=100){
+    while(WiFi.status()!=WL_CONNECTED&&count<100){
       delay(500);
       count++;
     }
@@ -106,7 +109,7 @@ void setup() {
  
 void loop() {
   currentValue=analogRead(ADC);
-  if((currentValue!=oldValue)&&(abs(oldValue-currentValue)>=10)){
+  if((currentValue!=oldValue)&&(abs(oldValue-currentValue)>=15)){
     oldValue=currentValue;
     if(currentValue<15)currentValue=0;
     imode=1;

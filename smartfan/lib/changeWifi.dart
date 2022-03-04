@@ -113,7 +113,6 @@ class _WifiPageState extends State<WifiPageChange> {
               onPressed: () async {
                 await send(InternetAddress(widget.ip),
                     '{"mode":99,"name":"${dropdownValue}","pass":"${passWifi.text}"}');
-                exit(0);
               },
               child: Text("Đổi"),
             )
